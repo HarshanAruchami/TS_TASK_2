@@ -1,9 +1,9 @@
 abstract class ElectricityBill {
-    public rate: number;
+    public rate?: number;
     public units: number;
     
 
-    constructor(rate: number, units: number) {
+    constructor(units: number,rate?: number) {
         this.rate = rate;
         this.units = units;
     }
@@ -12,17 +12,25 @@ abstract class ElectricityBill {
 }
 
 class Domestic extends ElectricityBill {
-    constructor(rate: number, units: number){
-        super(rate, units);
+    constructor(units: number){
+        super(units);
     }
 
-    public damagePerSecond(): any {
-        console.log("Name: " + this.name + " " + "\n" + "damagePerSecond: " + this.damage * this.attackSpeed);
+    public billDetails(): any {
+        console.log("Domestic Electricity Bill Units: " + this.units + "Rate: " + 5 * this.units);
     }
 }
+class Commerical extends ElectricityBill{
+    constructor(units:number){
+       super(units);
+    }
+    public billDetails(): any {
+        console.log("Commercial Electricity Bill Units: " + this.units + "Rate: " + 5 * this.units);    
+    }
 
-// let c = new Character('ABC', 123, 123);//Cannot create an instance of an abstract class
-// Character.damagePerSecond();
+}
+let a = new Domestic(300);
+let b= new Commerical(100);
+a.billDetails();
+b.billDetails();
 
-let g = new Goblin('ABC', 123, 123);
-g.damagePerSecond();
